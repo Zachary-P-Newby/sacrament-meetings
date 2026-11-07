@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    unoptimized: false,
+    unoptimized: true,
   },
 };
 
