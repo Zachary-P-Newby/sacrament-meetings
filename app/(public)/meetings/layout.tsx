@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Suspense } from "react"
 
 export default function MeetingsLayout({ children }: LayoutProps<"/">){
     return(
@@ -7,7 +8,10 @@ export default function MeetingsLayout({ children }: LayoutProps<"/">){
                 <Link className="mx-1 hover:text-primary" href="/meetings">All Meetings</Link> | { }
                 <Link className="mx-1 hover:text-primary" href="/meetings/current">Current Meeting</Link>
             </div>
-            {children}
+            <Suspense>
+                {children}
+            </Suspense>
+            
         </div>
     )
 }

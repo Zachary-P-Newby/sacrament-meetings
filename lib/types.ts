@@ -57,5 +57,9 @@ export function getThisSunday():string{
   const dayOfWeek = today.getDay();
   const sunday = new Date(today);
   sunday.setDate(today.getDate() - dayOfWeek);
-  return `${sunday.getFullYear()}-${sunday.getMonth()+1}-${sunday.getDate()}`
-}
+
+  //reformatted to resolve comparison and time zone issues using Copilot
+  const yyyy = sunday.getFullYear();
+  const mm = String(sunday.getMonth() + 1).padStart(2, '0');
+  const dd = String(sunday.getDate()).padStart(2, '0'); return `${yyyy}-${mm}-${dd}`
+  }  
