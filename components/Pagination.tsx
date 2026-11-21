@@ -33,11 +33,33 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         nextURL = `${pathname}?query=${query}&page=${nextPage}`;
     }
 
+
+
+    let prevLink;
+    let nextLink;
+
+    if (currentPage > 1){
+        prevLink =  <Link href={prevURL}  className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background"> Previous </Link>
+    }
+    else{
+        prevLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background">
+                        <p className="text-slate-500"> Previous </p>
+                    </div>
+    }
+
+    if(currentPage < totalPages){
+        nextLink = <Link href={nextURL} className="border-2 border-primary border-solid rounded-lg py-.5 px-1 hover:bg-primary hover:text-background"> Next </Link> 
+    }else{
+        nextLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background">
+                        <p className="text-slate-500"> Next </p>
+                    </div>
+    }
+
      
     return(
         <nav aria-label="Pagination" className=" border-2 border-body-text border-solid rounded-lg p-2 text-center block bg-white mb-10">
             <span>Page {currentPage} of {totalPages}   </span>
-            <Link href={prevURL} className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background"> Previous </Link>{'  '}/{'  '}<Link href={nextURL} className="border-2 border-primary border-solid rounded-lg py-.5 px-1 hover:bg-primary hover:text-background"> Next </Link> 
+           {prevLink}{'  '}/{'  '}{nextLink}
         </nav>
     );
 }

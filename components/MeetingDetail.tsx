@@ -2,7 +2,7 @@ import { SacramentMeeting, formatMeetingType} from "@/lib/types";
 import SpeakerList from "./SpeakerList";
 
 
-export default async function MeetingDetail(meeting:SacramentMeeting){
+export default async function MeetingDetail({meeting}:{meeting:SacramentMeeting}){
     return(
         <article className="w-140 max-w-screen flex flex-col text-center bg-neutral dark:bg-foreground p-4 mx-auto rounded-lg">
             <h2 className="font-bold text-2xl">{meeting.date}</h2>
