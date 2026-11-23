@@ -9,7 +9,7 @@ import { SacramentMeetingSchema, State } from "./SacramentMeetingSchema";
 export async function createMeeting(
     previousState: State,
     formData: FormData
-    ): Promise<State | void> {
+    ): Promise<State> {
     
     let announcements: string[] = [];
     if(formData.get("announcements")){
