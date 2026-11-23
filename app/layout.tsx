@@ -22,6 +22,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${barlow.variable}  h-full antialiased`}
     >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body className="min-h-full flex flex-col font-barlow">
         <Header/>
         <div className="flex flex-col flex-1 items-center justify-start bg-background font-barlow dark:bg-background">

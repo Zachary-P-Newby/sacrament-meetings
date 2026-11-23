@@ -24,16 +24,17 @@ export default async function MeetingDetail({meeting}:{meeting:SacramentMeeting}
             </section>
             <h3>Ward Business:</h3>
             <ul>
-                {meeting.wardBusiness.map((item)=>{
-                    return <li key={item.description}>{item.description}</li>
+                {meeting.wardBusiness.map((item, index)=>{
+                    return <li key={index}>{item.description}</li>
                 })}
             </ul>
             <h3>Announcements:</h3>
             <ul>
-                {meeting.announcements?.map((item)=>{
-                    return <li key={item}>{item}</li>
+                {meeting.announcements?.map((item,index)=>{
+                    return <li key={index}>{item}</li>
                 })}
             </ul>
+            <h3>Stake Business - {meeting.stakeBusiness ? "Yes" : "No"}</h3>
         </article>
     )
 

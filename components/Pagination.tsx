@@ -39,26 +39,26 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     let nextLink;
 
     if (currentPage > 1){
-        prevLink =  <Link href={prevURL}  className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background"> Previous </Link>
+        prevLink =  <Link href={prevURL}  className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background dark:hover:text-foreground"> Previous </Link>
     }
     else{
-        prevLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background">
+        prevLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background dark:hover:text-foreground">
                         <p className="text-slate-500"> Previous </p>
                     </div>
     }
 
     if(currentPage < totalPages){
-        nextLink = <Link href={nextURL} className="border-2 border-primary border-solid rounded-lg py-.5 px-1 hover:bg-primary hover:text-background"> Next </Link> 
+        nextLink = <Link href={nextURL} className="border-2 border-primary border-solid rounded-lg py-.5 px-1 hover:bg-primary hover:text-background dark:hover:text-foreground"> Next </Link> 
     }else{
-        nextLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background">
+        nextLink =  <div className="border-2 border-accent border-solid rounded-lg py-.5 px-1 hover:bg-accent hover:text-background dark:hover:text-foreground">
                         <p className="text-slate-500"> Next </p>
                     </div>
     }
 
      
     return(
-        <nav aria-label="Pagination" className=" border-2 border-body-text border-solid rounded-lg p-2 text-center block bg-white mb-10">
-            <span>Page {currentPage} of {totalPages}   </span>
+        <nav aria-label="Pagination" className=" border-2 border-body-text border-solid rounded-lg p-2 text-center flex flex-gap-4 justify-center bg-white min-w-1/5">
+            <span className="mx-2">Page {currentPage} of {totalPages}</span>
            {prevLink}{'  '}/{'  '}{nextLink}
         </nav>
     );

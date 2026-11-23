@@ -9,7 +9,7 @@ export interface Hymn {
   title: string;
 }
 
-export interface SpeakerItem {
+export type SpeakerItem = {
   id:number,
   name: string;
   topic: string;
@@ -63,3 +63,4 @@ export function getThisSunday():string{
   const mm = String(sunday.getMonth() + 1).padStart(2, '0');
   const dd = String(sunday.getDate()).padStart(2, '0'); return `${yyyy}-${mm}-${dd}`
   }  
+

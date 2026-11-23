@@ -6,6 +6,7 @@
   --primary: #11380c;
   --accent: #8d3e25;
   --neutral: #dab99a;
+  --neutral-dark: #8b6e53;
   --body-text: #0f0f0e;
 }
 
@@ -15,6 +16,7 @@
   --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-neutral: var(--neutral);
+  --color-neutral-dark: var(--neutral-dark);
   --color-body-text: var(--body-text);
   --font-barlow: var(--font-barlow);
 }
@@ -26,6 +28,7 @@
     --primary: #11380c;
     --accent: #8d3e25;
     --neutral: #c3a487;
+    --neutral-dark: #8b6e53;
     --body-text: #0f0f0e;
   }
 }

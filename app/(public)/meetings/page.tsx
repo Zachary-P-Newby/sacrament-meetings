@@ -20,15 +20,18 @@ export default async function Meetings(props:Props){
   ]);
 
   return (
-    <main className="flex flex-col flex-gap-8 items-center">
-      <h1 className="text-4xl w-full text-forground dark:text-foreground text-center m2">All Meetings:</h1>
+    <main className="flex flex-col flex-gap-8 items-center w-full">
+      <h1 className="text-4xl w-full text-forground dark:text-foreground text-center m-2">All Meetings:</h1>
       <MeetingSearch />
       <div className="grid grid-cols-2 gap-8 px-2 py-3 my-6">
         {meetings.map((m) => (
         <MeetingCard key={m.id} meeting={m} meetingDetailsLink={`/meetings/${m.id}`}/>
       ))}
       </div>
-      <Pagination totalPages={totalPages} />
+      <div className="flex justify-center min-w-full py-10">
+        <Pagination totalPages={totalPages} />
+      </div>
+      
     </main>
   );
 }
