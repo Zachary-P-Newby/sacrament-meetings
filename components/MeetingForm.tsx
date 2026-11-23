@@ -26,7 +26,7 @@ type FormProps = {
 
 
 
-export default function MeetingForm({ action, meeting }: FormProps) {
+export default function MeetingForm({ action, meeting }: FormProps){
   const [state, formAction, isPending] = useActionState(action, initialState);
 
 
@@ -164,7 +164,7 @@ export default function MeetingForm({ action, meeting }: FormProps) {
             <input 
             className={textFieldClass} 
             type="text" 
-            id="opening-hymn-title" 
+            id="opening-hymn-title"
             required name="opening-hymn-title" 
             defaultValue={meeting?.openingHymn.title} 
             aria-describedby="opening-hymn-error"/>

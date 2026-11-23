@@ -20,8 +20,8 @@ import { z } from "zod";
     name: z.string().min(5).max(50),
     type: z.enum(["speaker", "musical-number"]),
     topic: z.string().max(30)
-  }).superRefine(({type}, ctx) =>{
-    if(type==="speaker"){
+  }).superRefine(({type, topic}, ctx) =>{
+    if(type==="speaker" && topic.length < 5){
       ctx.addIssue({
         code: "custom",
         path: ["topic"],

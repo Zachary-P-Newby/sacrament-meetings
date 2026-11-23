@@ -9,7 +9,7 @@ import { SacramentMeetingSchema, State } from "./SacramentMeetingSchema";
 export async function createMeeting(
     previousState: State,
     formData: FormData
-    ): Promise<State> {
+    ): Promise<State | void> {
     
     let announcements: string[] = [];
     if(formData.get("announcements")){
@@ -36,13 +36,13 @@ export async function createMeeting(
         presiding: formData.get("presiding-member"),
         conducting: formData.get("conductor"),
         announcements: announcements,
-        openingHymn: {number: parseInt(formData.get("opening-hymn-number")?.toString() ?? "0"), title: formData.get("opening-hymn-number")},
+        openingHymn: {number: parseInt(formData.get("opening-hymn-number")?.toString() ?? "0"), title: formData.get("opening-hymn-title")?.toString()},
         openingPrayer: formData.get("opening-prayer"),
         wardBusiness: wardBusiness,
         stakeBusiness: formData.get("stake-business") ? true : false,
-        sacramentHymn: {number: parseInt(formData.get("sacrament-hymn-number")?.toString() ?? "0"), title: formData.get("sacrament-hymn-number")},
+        sacramentHymn: {number: parseInt(formData.get("sacrament-hymn-number")?.toString() ?? "0"), title: formData.get("sacrament-hymn-title")?.toString()},
         speakers: speakers,
-        closingHymn: {number: parseInt(formData.get("closing-hymn-number")?.toString() ?? "0"), title: formData.get("closing-hymn-number")},
+        closingHymn: {number: parseInt(formData.get("closing-hymn-number")?.toString() ?? "0"), title: formData.get("closing-hymn-title")?.toString()},
         closingPrayer: formData.get("closing-prayer")
     }
   
@@ -56,15 +56,14 @@ export async function createMeeting(
             meeting = await addMeetingQuery(validatedData.data);
         }catch(err){
             console.error("Error: ", err);
-            throw new Error('Could not create meeting, please try again later.');
+            return {message: 'Database Error Failed to create meeting.'};
         }
         revalidatePath("/meetings");
         redirect(`/meetings/${meeting.id}`);
-
+        
     }
     else{
-        console.log("Error");
-        console.log(validatedData.error);
+
         return {
       errors: validatedData.error.flatten().fieldErrors,
       message: 'Missing or invalid fields. Failed to create meeting.',
@@ -106,13 +105,13 @@ export async function updateMeeting(
         presiding: formData.get("presiding-member"),
         conducting: formData.get("conductor"),
         announcements: announcements,
-        openingHymn: {number: parseInt(formData.get("opening-hymn-number")?.toString() ?? "0"), title: formData.get("opening-hymn-title")},
+        openingHymn: {number: parseInt(formData.get("opening-hymn-number")?.toString() ?? "0"), title: formData.get("opening-hymn-title")?.toString()},
         openingPrayer: formData.get("opening-prayer"),
         wardBusiness: wardBusiness,
         stakeBusiness: formData.get("stake-business") ? true : false,
-        sacramentHymn: {number: parseInt(formData.get("sacrament-hymn-number")?.toString() ?? "0"), title: formData.get("sacrament-hymn-title")},
+        sacramentHymn: {number: parseInt(formData.get("sacrament-hymn-number")?.toString() ?? "0"), title: formData.get("sacrament-hymn-title")?.toString()},
         speakers: speakers,
-        closingHymn: {number: parseInt(formData.get("closing-hymn-number")?.toString() ?? "0"), title: formData.get("closing-hymn-title")},
+        closingHymn: {number: parseInt(formData.get("closing-hymn-number")?.toString() ?? "0"), title: formData.get("closing-hymn-title")?.toString()},
         closingPrayer: formData.get("closing-prayer")
     }
   
@@ -126,19 +125,14 @@ export async function updateMeeting(
             
         try{
             meeting = await updatMeetingQuery(validatedData.data.id || parseInt(id), validatedData.data);
-            if(meeting){
-                
-            }else{
-                throw new Error('Could not update meeting, please try again later.');
-            }
             
         }catch(err){
             console.error("Error: ", err);
-            throw new Error('Could not update meeting, please try again later.');
+            return {message: 'Database Error Failed to create meeting.'};
         }
 
         revalidatePath("/meetings");
-        redirect(`/meetings/${meeting.id}`);
+        redirect(`/meetings/${meeting?.id}`);
 
     }
     else{
